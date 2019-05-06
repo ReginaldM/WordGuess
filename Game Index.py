@@ -16,8 +16,6 @@ class ourGame:
 
 
 
-
-
     def generateWord():
         ## a variable that'll represent a word in Array
         wordBucketIndex = random.randint(0,len(ourGame.wordBucket))
@@ -25,17 +23,6 @@ class ourGame:
         ## convert items in the Array to Uppercase
         wordList = ourGame.wordBucket[wordBucketIndex].upper()
 
-        ## convert the word to a list of characters
-        ## for random.shuffle to shuffle the letters
-        # myWords = list(wordList)
-
-        ## Shuffle the letters of the word
-        # random.shuffle(myWords)
-
-        # # ## Output the shuffled letters to the user
-        # print("\n")
-        # wordScrambled = print('     '.join(myWords))
-        # # answer = input("Enter the correct word: ").upper()
         return wordList
 ## End of generateWord() function
 
@@ -45,8 +32,8 @@ class ourGame:
     def shuffledWord(myWords):
         mWords = list(myWords)
         random.shuffle(mWords)
-        D = print("     ".join(mWords))
-        return D
+        shuffledLetters = print("     ".join(mWords))
+        return shuffledLetters
 ## End of shuffleWord() function
 
 
