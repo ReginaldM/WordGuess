@@ -27,7 +27,7 @@ class ourGame:
 
         ## convert the word to a list of characters
         ## for random.shuffle to shuffle the letters
-        myWords = list(wordList)
+        # myWords = list(wordList)
 
         ## Shuffle the letters of the word
         # random.shuffle(myWords)
@@ -36,15 +36,16 @@ class ourGame:
         # print("\n")
         # wordScrambled = print('     '.join(myWords))
         # # answer = input("Enter the correct word: ").upper()
-        return myWords
+        return wordList
 ## End of generateWord() function
 
 
 
 
     def shuffledWord(myWords):
-        random.shuffle(myWords)
-        D = print("     ".join(myWords))
+        mWords = list(myWords)
+        random.shuffle(mWords)
+        D = print("     ".join(mWords))
         return D
 ## End of shuffleWord() function
 
