@@ -21,35 +21,42 @@ class ourGame:
         wordBucketIndex = random.randint(0,len(ourGame.wordBucket))
 
         ## convert items in the Array to Uppercase
-        wordList = ourGame.wordBucket[wordBucketIndex].upper()
+        wordFromIndex = ourGame.wordBucket[wordBucketIndex].upper()
 
-        return wordList
+        return wordFromIndex
 ## End of generateWord() function
 
 
 
 
-    def shuffledWord(myWords):
-        mWords = list(myWords)
-        random.shuffle(mWords)
-        shuffledLetters = print("     ".join(mWords))
+    def shuffleWord(generatedWord):
+        brokeDownWord = list(generatedWord)
+        random.shuffle(brokeDownWord)
+        shuffledLetters = print("     ".join(brokeDownWord))
         return shuffledLetters
 ## End of shuffleWord() function
 
 
 
 
-    def sh():
-        ourGame.shuffledWord(ourGame.generateWord())
+    def displayWord():
+        TSG = str(ourGame.generateWord())
+        ourGame.shuffleWord(TSG)
+
+        asw = input("Word: ").upper()
+        if asw == TSG:
+            print("Correct")
+        else:
+            print(f"{TSG} doesn't match with {asw}")
+## End of displayWord() function
 
 
 
 
-
-    def tryTimes(answers, wordlist, myWords):
+    def tryTimes(answers, wordlist, generatedWord):
         while (answers != wordlist) and (ourGame.guesses > 0):
             print(f"\n Your answer is incorrect. TRY AGAIN \n guesses left = {ourGame.guesses} \n")
-            print('     '.join(myWords))
+            print('     '.join(generatedWord))
             answer = input("Enter the correct word: ").upper()
             answers = answer
             if answers == wordlist:
@@ -67,8 +74,6 @@ class ourGame:
 
 
 
-
-
     # def playTimes(wordsRecieved):
     #     if (wordsRecieved < len(ourGame.wordBucket)) and (wordsRecieved != 0):
 
@@ -82,14 +87,14 @@ class ourGame:
 
     #         #     ## convert the word to a list of characters
     #         #     ## for random.shuffle to shuffle the letters
-    #         #     myWords = list(wordList)
+    #         #     generatedWord = list(wordList)
 
     #         #     ## Shuffle the letters of the word
-    #         #     random.shuffle(myWords)
+    #         #     random.shuffle(generatedWord)
 
     #         #     ## Output the shuffled letters to the user
     #         #     print("\n")
-    #         #     print('     '.join(myWords))
+    #         #     print('     '.join(generatedWord))
     #             answer = input("Enter the correct word: ").upper()
 
     #             ## Compare answer to the actual word
@@ -104,7 +109,7 @@ class ourGame:
     #             elif (answer != wordList) and (ourGame.guesses != 0):
     #                 ourGame.guesses -= 1
     #                 try:
-    #                     ourGame.tryTimes(answer, wordList, myWords)
+    #                     ourGame.tryTimes(answer, wordList, generatedWord)
     #                 except IndexError as ve:
     #                     print("Error")
                     
@@ -130,8 +135,7 @@ class ourGame:
     #     else:
     #         print("\n Sorry for the inconvenience. \
     #             \n Your range has exceeded the Bucket items")
-
-    # # End of playTimes function
+## End of playTimes function
 
 
 
@@ -142,5 +146,5 @@ class ourGame:
 # ourGame.playTimes(wordsRecieved)
 
 
-ourGame.sh()
+ourGame.displayWord()
 
