@@ -13,7 +13,7 @@ class ourGame:
                 "much","with","wall","time","sand","Into","Flat",
                 "mile","done","part","come","seen","loss", "went",
                 "were","rock","long","those","google", "tshimologo",
-                "tshirelletso"]
+                "tshirelletso","python"]
 
 
 
@@ -41,9 +41,9 @@ class ourGame:
 
 
     def displayWord():
-        TSG = str(ourGame.generateWord())
-        ourGame.shuffleWord(TSG)
-        return TSG
+        wordString = str(ourGame.generateWord())
+        ourGame.shuffleWord(wordString)
+        return wordString
 ## End of displayWord() function
 
 
@@ -51,7 +51,9 @@ class ourGame:
 
     def tryTimes(answers, wordlist, generatedWord):
         while (answers != wordlist) and (ourGame.guesses > 0):
-            print(f"\n Your answer is incorrect. TRY AGAIN \n guesses left = {ourGame.guesses} \n")
+            print(f"\n Your answer is incorrect. TRY AGAIN \
+                \n guesses left = {ourGame.guesses} \n")
+            
             print('     '.join(generatedWord))
             answer = input("Enter the correct word: ").upper()
             answers = answer
@@ -75,16 +77,19 @@ class ourGame:
         wordsRecieved = int(input(f"There are {len(ourGame.wordBucket)} words in the Bucket \
         \n How many words would you like to get? : "))
 
-        if (wordsRecieved < len(ourGame.wordBucket) or wordsRecieved == len(ourGame.wordBucket)) and (wordsRecieved != 0):
+        if (wordsRecieved < len(ourGame.wordBucket) or \
+            wordsRecieved == len(ourGame.wordBucket)) and (wordsRecieved != 0):
             ## Loop through the Array of words
             for i in range(0,int(wordsRecieved)):
-                TG = str(ourGame.displayWord())
+                correctWord = str(ourGame.displayWord())
 
-                asw = input("Word: ").upper()
-                if asw == TG:
-                    print("Correct")
+                userAnswer = input("Word: ").upper()
+                if userAnswer == correctWord:
+                    ourGame.score += 1
+                    print(f"Correct! \nCurrent score = {ourGame.score}")
+
                 else:
-                    print(f"{TG} doesn't match with {asw}")
+                    print(f"{correctWord} doesn't match with {userAnswer}")
                     
                 ## a variable that'll represent a word in Array
             #     j = random.randint(0,len(ourGame.wordBucket))
@@ -128,11 +133,11 @@ class ourGame:
 
     #             print(f'Your score is now {ourGame.score} \n')
 
-    #         ## Message after the loop
-    #         if ourGame.score == wordsRecieved:
-    #             print(f"Congratulations! You got all {wordsRecieved} answers correct!")
-    #         else:
-    #             print(f":) Better luck next time in getting all {wordsRecieved} answers correct")
+            ## Message after the loop
+            if ourGame.score == wordsRecieved:
+                print(f"Congratulations! You got all {wordsRecieved} answers correct!")
+            else:
+                print(f":) Better luck next time in getting all {wordsRecieved} answers correct")
 
 
         elif wordsRecieved == 0 or wordsRecieved < 0:
@@ -143,14 +148,10 @@ class ourGame:
             print("\n Sorry for the inconvenience. \
                 \n Your range has exceeded the Bucket items")
 ## End of playGame function
+"""
+## End of ourGame Class 
+"""
 
-
-
-# wordsRecieved = int(input(f"There are {len(ourGame.wordBucket)} \words in the Bucket \
-#  \n How many words would you like to get? : "))
-
-
-# ourGame.playGame(wordsRecieved)
 
 
 ourGame.playGame()
