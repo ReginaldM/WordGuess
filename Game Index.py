@@ -2,6 +2,7 @@ import random
 
 """
 The SHUFFLE lines of codes needs to be seperated 
+Modify tryTimes() method
 """
 
 class ourGame:
@@ -42,12 +43,7 @@ class ourGame:
     def displayWord():
         TSG = str(ourGame.generateWord())
         ourGame.shuffleWord(TSG)
-
-        asw = input("Word: ").upper()
-        if asw == TSG:
-            print("Correct")
-        else:
-            print(f"{TSG} doesn't match with {asw}")
+        return TSG
 ## End of displayWord() function
 
 
@@ -74,13 +70,24 @@ class ourGame:
 
 
 
-    # def playTimes(wordsRecieved):
-    #     if (wordsRecieved < len(ourGame.wordBucket)) and (wordsRecieved != 0):
+    def playGame():
 
-    #         ## Loop through the Array of words
-    #         # for i in range(0,int(wordsRecieved)):
-    #         #     ## a variable that'll represent a word in Array
-    #         #     j = random.randint(0,len(ourGame.wordBucket))
+        wordsRecieved = int(input(f"There are {len(ourGame.wordBucket)} words in the Bucket \
+        \n How many words would you like to get? : "))
+
+        if (wordsRecieved < len(ourGame.wordBucket) or wordsRecieved == len(ourGame.wordBucket)) and (wordsRecieved != 0):
+            ## Loop through the Array of words
+            for i in range(0,int(wordsRecieved)):
+                TG = str(ourGame.displayWord())
+
+                asw = input("Word: ").upper()
+                if asw == TG:
+                    print("Correct")
+                else:
+                    print(f"{TG} doesn't match with {asw}")
+                    
+                ## a variable that'll represent a word in Array
+            #     j = random.randint(0,len(ourGame.wordBucket))
 
     #         #     ## convert items in the Array to Uppercase
     #         #     wordList = ourGame.wordBucket[j].upper()
@@ -128,14 +135,14 @@ class ourGame:
     #             print(f":) Better luck next time in getting all {wordsRecieved} answers correct")
 
 
-    #     elif wordsRecieved == 0 or wordsRecieved < 0:
-    #         print("There's always a next time. :)")
+        elif wordsRecieved == 0 or wordsRecieved < 0:
+            print("There's always a next time. :)")
 
-    #     ## Output range exceeded if < length of bucket items
-    #     else:
-    #         print("\n Sorry for the inconvenience. \
-    #             \n Your range has exceeded the Bucket items")
-## End of playTimes function
+        ## Output range exceeded if < length of bucket items
+        else:
+            print("\n Sorry for the inconvenience. \
+                \n Your range has exceeded the Bucket items")
+## End of playGame function
 
 
 
@@ -143,8 +150,8 @@ class ourGame:
 #  \n How many words would you like to get? : "))
 
 
-# ourGame.playTimes(wordsRecieved)
+# ourGame.playGame(wordsRecieved)
 
 
-ourGame.displayWord()
+ourGame.playGame()
 
