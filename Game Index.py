@@ -3,6 +3,7 @@ import random
 """
 The SHUFFLE lines of codes needs to be seperated 
 Modify tryTimes() method
+Need to understand how to 
 """
 
 class ourGame:
@@ -51,11 +52,13 @@ class ourGame:
 
     def tryTimes(answers, correctword):
         while (answers != correctword) and (ourGame.guesses > 0):
+            ourGame.guesses -= 1
             print(f"\n Your answer is incorrect. TRY AGAIN \
                 \n guesses left = {ourGame.guesses} \n")
             
-            print('     '.join(correctword))
-            answer = input("Enter the correct word: ").upper()
+            ourGame.shuffleWord(correctword)
+            
+            answer = input("\nEnter the correct word: ").upper()
             answers = answer
             if answers == correctword:
                 ourGame.score += 1
@@ -66,7 +69,7 @@ class ourGame:
                 ourGame.score -= 1
                 break
             
-        print(correctword + " " + answers)
+        print("\n"+correctword + " " + answers+"\n")
 ## End of tryTimes() function
 
 
@@ -97,7 +100,7 @@ class ourGame:
                         return "Something's wrong"
                   
                   
-                    print(f"{correctWord} doesn't match with {userAnswer}")
+                    # print(f"{correctWord} doesn't match with {userAnswer}")
                     # ourGame.guesses -= 1
                 
                 ourGame.steps += 1
@@ -120,7 +123,7 @@ class ourGame:
     #                 print(f"Sorry. {answer} is not the correct answer. ===== {guesses}")                
     #                 ourGame.score -= 1
 
-                print(f"\nCurrent score = {ourGame.score}")
+                print(f"\nCurrent score = {ourGame.score}. Guesses left = {ourGame.guesses}")
 
             ## Message after the loop
             if ourGame.guesses < 0 or ourGame.guesses == 0:
@@ -143,7 +146,8 @@ class ourGame:
 ## End of ourGame Class 
 """
 
-
-
 ourGame.playGame()
 
+# see = ourGame.displayWord()
+
+# print(see)
