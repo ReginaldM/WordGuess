@@ -3,7 +3,19 @@ import random
 """
 The SHUFFLE lines of codes needs to be seperated 
 Modify tryTimes() method
-Need to understand how to 
+
+TRY THIS
+gameAnswer
+answer = input(....)
+gameAnswer = answer
+
+if gameAnswer == correctWord: ....
+
+try():
+    answer = input(....)
+    gameAnswer = answer
+
+    if gameAnswer == correctWord: ....
 """
 
 class ourGame:
@@ -18,12 +30,21 @@ class ourGame:
                 "tshirelletso","python"]
 
 
-
     def generateWord():
         ## a variable that'll represent a word in Array
         wordBucketIndex = random.randint(0,len(ourGame.wordBucket))
+        try:
+            wordFromIndex = ourGame.wordBucket[wordBucketIndex].upper()
+        except IndexError as eGen:
+            wordFromIndex = ourGame.wordBucket[wordBucketIndex-1].upper()
+            tEstErr = input("print Error Y/N: ").upper()
+            if tEstErr == "Y":
+                return eGen
+            else:
+                return wordFromIndex
+            # return eGen
         ## convert items in the Array to Uppercase
-        wordFromIndex = ourGame.wordBucket[wordBucketIndex].upper()
+##        wordFromIndex = ourGame.wordBucket[wordBucketIndex].upper()
 
         return wordFromIndex
 ## End of generateWord() function
@@ -51,8 +72,8 @@ class ourGame:
 
 
     def tryTimes(answers, correctword):
-        while (answers != correctword) and (ourGame.guesses > 0):
-            ourGame.guesses -= 1
+        ourGame.guesses -= 1
+        while (answers != correctword):
             print(f"\n Your answer is incorrect. TRY AGAIN \
                 \n guesses left = {ourGame.guesses} \n")
             
@@ -63,20 +84,18 @@ class ourGame:
             if answers == correctword:
                 ourGame.score += 1
                 break
-            elif answers != correctword:
-                ourGame.guesses -= 1
-            elif guesses == 0:
+            elif ourGame.guesses == 0:
                 ourGame.score -= 1
+                ourGame.guesses -= 1
                 break
-            
-        print("\n"+correctword + " " + answers+"\n")
+            elif answers != correctword:
+                ourGame.guesses -= 1                            
 ## End of tryTimes() function
 
 
 
 
     def playGame():
-
         wordsRecieved = int(input(f"There are {len(ourGame.wordBucket)} words in the Bucket \
         \n How many words would you like to get? : "))
 
@@ -85,43 +104,24 @@ class ourGame:
             
             ## Loop through the Array of words
             while (ourGame.steps < int(wordsRecieved)) and \
-                (ourGame.guesses != 0 or ourGame.guesses < 0):
+                (ourGame.guesses > (-1)):
 
                 correctWord = str(ourGame.displayWord())
 
                 userAnswer = input("Word: ").upper()
                 if userAnswer == correctWord:
                     ourGame.score += 1
-
+                elif ourGame.guesses == 0 or ourGame.guesses < 0:
+                    print("\nGame Over")
+                    break
                 else:
                     try:
                         ourGame.tryTimes(userAnswer,correctWord)
                     except:
                         return "Something's wrong"
-                  
-                  
-                    # print(f"{correctWord} doesn't match with {userAnswer}")
-                    # ourGame.guesses -= 1
-                
+
                 ourGame.steps += 1
 
-    #             ## Compare answer to the actual word
-    #             if answer == wordList:
-    #                 print("\n Yes! You are correct.")
-    #                 ourGame.score += 1
-
-    #             elif (answer != wordList) and (ourGame.guesses != 0):
-    #                 ourGame.guesses -= 1
-    #                 try:
-    #                     ourGame.tryTimes(answer, wordList, generatedWord)
-    #                 except IndexError as ve:
-    #                     print("Error")
-                    
-    #                 print(f"\n \n You have {ourGame.guesses} guesses left \n \n")
-                    
-    #             else:
-    #                 print(f"Sorry. {answer} is not the correct answer. ===== {guesses}")                
-    #                 ourGame.score -= 1
 
                 print(f"\nCurrent score = {ourGame.score}. Guesses left = {ourGame.guesses}")
 
@@ -148,6 +148,3 @@ class ourGame:
 
 ourGame.playGame()
 
-# see = ourGame.displayWord()
-
-# print(see)
