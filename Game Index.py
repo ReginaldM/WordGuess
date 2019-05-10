@@ -56,6 +56,7 @@ class wordGuess:
 
             answers = answer
             if answers == correctword:
+                print("You are correct! Well done")
                 wordGuess.score += 1
                 break
             elif wordGuess.guesses == 0:
@@ -82,6 +83,7 @@ class wordGuess:
 
                 userAnswer = input("\nType in the word correctly: ").upper()
                 if userAnswer == correctWord:
+                    print("You are correct! Well done")
                     wordGuess.score += 1
                 elif wordGuess.guesses <= 0:
                     print("\nGame Over")
