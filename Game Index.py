@@ -1,24 +1,6 @@
 import random
 
-"""
-The SHUFFLE lines of codes needs to be seperated 
-Modify tryTimes() method
-
-TRY THIS
-gameAnswer
-answer = input(....)
-gameAnswer = answer
-
-if gameAnswer == correctWord: ....
-
-try():
-    answer = input(....)
-    gameAnswer = answer
-
-    if gameAnswer == correctWord: ....
-"""
-
-class ourGame:
+class wordGuess:
     steps = 0
     guesses = 3
     score = 0
@@ -32,24 +14,20 @@ class ourGame:
 
     def generateWord():
         ## a variable that'll represent a word in Array
-        wordBucketIndex = random.randint(0,len(ourGame.wordBucket))
+        wordBucketIndex = random.randint(0,len(wordGuess.wordBucket))
+
         try:
-            wordFromIndex = ourGame.wordBucket[wordBucketIndex].upper()
-        except IndexError as eGen:
-            wordFromIndex = ourGame.wordBucket[wordBucketIndex-1].upper()
-            tEstErr = input("print Error Y/N: ").upper()
-            if tEstErr == "Y":
-                return eGen
+            wordFromIndex = wordGuess.wordBucket[wordBucketIndex].upper()
+        except IndexError as listIndexError:
+            wordFromIndex = wordGuess.wordBucket[wordBucketIndex-1].upper()
+            outPutErr = input("print Error Y/N: ").upper()
+            if outPutErr == "Y":
+                print(f"\n{listIndexError}\n")
             else:
                 return wordFromIndex
-            # return eGen
-        ## convert items in the Array to Uppercase
-##        wordFromIndex = ourGame.wordBucket[wordBucketIndex].upper()
-
+       
         return wordFromIndex
 ## End of generateWord() function
-
-
 
 
     def shuffleWord(generatedWord):
@@ -60,91 +38,82 @@ class ourGame:
 ## End of shuffleWord() function
 
 
-
-
     def displayWord():
-        wordString = str(ourGame.generateWord())
-        ourGame.shuffleWord(wordString)
+        wordString = str(wordGuess.generateWord())
+        wordGuess.shuffleWord(wordString)
         return wordString
 ## End of displayWord() function
 
 
-
-
     def tryTimes(answers, correctword):
-        ourGame.guesses -= 1
+        wordGuess.guesses -= 1
         while (answers != correctword):
             print(f"\n Your answer is incorrect. TRY AGAIN \
-                \n guesses left = {ourGame.guesses} \n")
+                \n Guesses Left = {wordGuess.guesses} \n")
             
-            ourGame.shuffleWord(correctword)
-            
+            wordGuess.shuffleWord(correctword)
             answer = input("\nEnter the correct word: ").upper()
+
             answers = answer
             if answers == correctword:
-                ourGame.score += 1
+                wordGuess.score += 1
                 break
-            elif ourGame.guesses == 0:
-                ourGame.score -= 1
-                ourGame.guesses -= 1
+            elif wordGuess.guesses == 0:
+                wordGuess.score -= 1
+                wordGuess.guesses -= 1
                 break
             elif answers != correctword:
-                ourGame.guesses -= 1                            
+                wordGuess.guesses -= 1                            
 ## End of tryTimes() function
 
 
-
-
     def playGame():
-        wordsRecieved = int(input(f"There are {len(ourGame.wordBucket)} words in the Bucket \
+        wordsToRecieve = int(input(f"There are {len(wordGuess.wordBucket)} words in the Bucket \
         \n How many words would you like to get? : "))
 
-        if (wordsRecieved < len(ourGame.wordBucket) or \
-            wordsRecieved == len(ourGame.wordBucket)) and (wordsRecieved != 0):
+        if (wordsToRecieve <= len(wordGuess.wordBucket)) and (wordsToRecieve > 0):
             
             ## Loop through the Array of words
-            while (ourGame.steps < int(wordsRecieved)) and \
-                (ourGame.guesses > (-1)):
+            while (wordGuess.steps < int(wordsToRecieve)) and \
+                (wordGuess.guesses > (-1)):
+                print("\n")
 
-                correctWord = str(ourGame.displayWord())
+                correctWord = str(wordGuess.displayWord())
 
-                userAnswer = input("Word: ").upper()
+                userAnswer = input("\nType in the word correctly: ").upper()
                 if userAnswer == correctWord:
-                    ourGame.score += 1
-                elif ourGame.guesses == 0 or ourGame.guesses < 0:
+                    wordGuess.score += 1
+                elif wordGuess.guesses <= 0:
                     print("\nGame Over")
                     break
                 else:
                     try:
-                        ourGame.tryTimes(userAnswer,correctWord)
+                        wordGuess.tryTimes(userAnswer,correctWord)
                     except:
                         return "Something's wrong"
 
-                ourGame.steps += 1
-
-
-                print(f"\nCurrent score = {ourGame.score}. Guesses left = {ourGame.guesses}")
+                wordGuess.steps += 1
+                print(f"\nCurrent score = {wordGuess.score}.")
 
             ## Message after the loop
-            if ourGame.guesses < 0 or ourGame.guesses == 0:
+            if wordGuess.guesses <= 0:
                 print(f"\nThis is so sad.. You ran out of guesses. GAME OVER \
-                    \n Better luck next time in getting all {wordsRecieved} answers correct")
-            elif ourGame.score == wordsRecieved:
-                print(f"Congratulations! You got all {wordsRecieved} answers correct!")
+                    \n Better luck next time in getting all {wordsToRecieve} answers correct")
+            elif wordGuess.score == wordsToRecieve:
+                print(f"Congratulations! You got all {wordsToRecieve} answers correct!")
             else:
-                print(f":) Better luck next time in getting all {wordsRecieved} answers correct")
+                print(f":) Better luck next time in getting all {wordsToRecieve} answers correct")
 
 
-        elif wordsRecieved == 0 or wordsRecieved < 0:
+        elif wordsToRecieve <= 0:
             print("There's always a next time. :)")
-        ## Output range exceeded if < length of bucket items
+        ## Output range exceeded if > length of bucket items
         else:
             print("\n Sorry for the inconvenience. \
                 \n Your range has exceeded the Bucket items")
 ## End of playGame function
 """
-## End of ourGame Class 
+## End of wordGuess Class 
 """
 
-ourGame.playGame()
-
+wordGuess.playGame()
