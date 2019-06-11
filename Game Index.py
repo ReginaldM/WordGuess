@@ -1,6 +1,35 @@
 import random
 
 class wordGuess:
+
+'''To get a list of words from a file'''
+##    ''' Change Directory '''
+##    os.chdir("d:/Documents")
+##    print(f"\n{os.getcwd()}")
+##
+##    wordBucket = []
+##    steps = 0
+##    guesses = 3
+##    score = 0
+##
+##
+##    def openFile():
+##        with open("test.txt", "r") as rFile:
+##            oFile = csv.reader(rFile)
+##
+##            for docLine in oFile:
+##                for docWord in docLine:
+##                    Words = docWord.split(" ",5)
+##                    for wSTR in range(len(Words)):
+##                        if Words[wSTR] != "":
+##                            wordGuess.wordBucket.append(Words[wSTR])
+##                        else:
+##                            pass
+##                        
+##        return list(wordGuess.wordBucket)
+#### End of OpenFile() method
+##
+
     steps = 0
     guesses = 3
     score = 0
