@@ -59,17 +59,16 @@ class wordGuess:
 ## End of shuffleWord() function
 
 
-    def tryTimes(answers, correctword):
+    def tryTimes(correctword):
         wordGuess.guesses -= 1
-        while (answers != correctword):
+        while True:
             print(f"\n Your answer is incorrect. TRY AGAIN \
                 \n Guesses Left = {wordGuess.guesses} \n \
                 \n {wordGuess.shuffleWord(correctword)}")
                         
             answer = input("\nEnter the correct word: ").upper()
 
-            answers = answer
-            if answers == correctword:
+            if answer == correctword:
                 print("You are correct! Well done")
                 wordGuess.score += 1
                 break
@@ -77,7 +76,7 @@ class wordGuess:
                 wordGuess.score -= 1
                 wordGuess.guesses -= 1
                 break
-            elif answers != correctword:
+            elif answer != correctword:
                 wordGuess.guesses -= 1                            
 ## End of tryTimes() function
 
@@ -95,7 +94,7 @@ class wordGuess:
 
                 print(f"\n {wordGuess.shuffleWord(wordGuess.generateWord())}")
                 
-                userAnswer = input("\nType in the word correctly: ").upper()
+                userAnswer = input("\nEnter the correct word: ").upper()
                 if userAnswer == wordGuess.correctWord:
                     print("You are correct! Well done")
                     wordGuess.score += 1
@@ -103,7 +102,7 @@ class wordGuess:
                     print("\nGame Over")
                     break
                 else:
-                    wordGuess.tryTimes(userAnswer,wordGuess.correctWord)
+                    wordGuess.tryTimes(wordGuess.correctWord)
                     
                 wordGuess.steps += 1
                 print(f"\nCurrent score = {wordGuess.score}.")
