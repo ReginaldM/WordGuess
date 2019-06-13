@@ -1,9 +1,9 @@
 import random, os, csv
 
 class wordGuess:
-    # # To get a list of words from a file
+    """ To get a list of words from a file """
     # ''' Change Directory '''
-    # os.chdir("d:/Documents")
+    # os.chdir("{DriveLetter}:/{Folder}")
     # print(f"\n{os.getcwd()}")
 
     # wordBucket = []
@@ -12,10 +12,10 @@ class wordGuess:
     score = 0
 
     wordBucket = ["upon","maid","gone","feel","that","rich","came",
-                "much","with","wall","time","sand","Into","Flat",
+                "much","with","wall","moliki","time","sand","Into","Flat",
                 "mile","done","part","come","seen","loss", "went",
                 "were","rock","long","those","google", "tshimologo",
-                "tshirelletso","python"]
+                "tshirelletso","python","reginald"]
 
 
 #     def openFile():
@@ -24,12 +24,12 @@ class wordGuess:
 
 #             for docLine in oFile:
 #                 for docWord in docLine:
-#                     Words = docWord.split(" ",10)
-#                     for wSTR in Words:
-#                         if wSTR != "":
-#                             wordGuess.wordBucket.append(wSTR)
+#                     wordList = docWord.split(" ")
+#                     for wordStrings in wordlist:
+#                         if wordStrings != "":
+#                             wordGuess.wordBucket.append(wordStrings)
                 
-#         return list(wordGuess.wordBucket)
+#         return f"WordBucket has been populated with {len(wordGuess.wordBucket)} words."
 # ## End of OpenFile() method
 
 
@@ -41,21 +41,19 @@ class wordGuess:
             wordFromIndex = wordGuess.wordBucket[wordBucketIndex].upper()
         except IndexError as listIndexError:
             wordFromIndex = wordGuess.wordBucket[wordBucketIndex-1].upper()
-            outPutErr = input("print Error Y/N: ").upper()
-            if outPutErr == "Y":
-                print(f"\n{listIndexError}\n")
-            else:
-                return wordFromIndex
-       
+            # outputErr = input("print Error Y/N: ").upper()
+            # if outputErr == "Y":
+                # print(f"\n{listIndexError}\n")
+                
         return wordFromIndex
 ## End of generateWord() function
 
 
     def shuffleWord(generatedWord):
-        brokeDownWord = list(generatedWord)
-        random.shuffle(brokeDownWord)
-        shuffledLetters = print("    ".join(brokeDownWord))
-        return shuffledLetters
+        brokenDownWord = list(generatedWord)
+        random.shuffle(brokenDownWord)
+        shuffledLetters = "    ".join(brokenDownWord)
+        return print(shuffledLetters)
 ## End of shuffleWord() function
 
 
