@@ -122,7 +122,7 @@ class wordGuess:
         ## Output range exceeded if > length of bucket items
         else:
             print("\n Sorry for the inconvenience. \
-                \n Your range has exceeded the Bucket items")
+                \n Your range has exceeded the words in the Bucket")
 ## End of playGame function
 """
 ## End of wordGuess Class 
