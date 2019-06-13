@@ -10,6 +10,7 @@ class wordGuess:
     steps = 0
     guesses = 3
     score = 0
+    correctWord = ""
 
     wordBucket = ["upon","maid","gone","feel","that","rich","came",
                 "much","with","wall","moliki","time","sand","Into","Flat",
@@ -44,7 +45,8 @@ class wordGuess:
             # outputErr = input("print Error Y/N: ").upper()
             # if outputErr == "Y":
                 # print(f"\n{listIndexError}\n")
-                
+
+        wordGuess.correctWord = wordFromIndex 
         return wordFromIndex
 ## End of generateWord() function
 
@@ -53,24 +55,17 @@ class wordGuess:
         brokenDownWord = list(generatedWord)
         random.shuffle(brokenDownWord)
         shuffledLetters = "    ".join(brokenDownWord)
-        return print(shuffledLetters)
+        return shuffledLetters
 ## End of shuffleWord() function
-
-
-    def displayWord():
-        wordString = str(wordGuess.generateWord())
-        wordGuess.shuffleWord(wordString)
-        return wordString
-## End of displayWord() function
 
 
     def tryTimes(answers, correctword):
         wordGuess.guesses -= 1
         while (answers != correctword):
             print(f"\n Your answer is incorrect. TRY AGAIN \
-                \n Guesses Left = {wordGuess.guesses} \n")
-            
-            wordGuess.shuffleWord(correctword)
+                \n Guesses Left = {wordGuess.guesses} \n \
+                \n {wordGuess.shuffleWord(correctword)}")
+                        
             answer = input("\nEnter the correct word: ").upper()
 
             answers = answer
@@ -97,32 +92,28 @@ class wordGuess:
             ## Loop through the Array of words
             while (wordGuess.steps < int(wordsToRecieve)) and \
                 (wordGuess.guesses > (-1)):
-                print("\n")
 
-                correctWord = str(wordGuess.displayWord())
-
+                print(f"\n {wordGuess.shuffleWord(wordGuess.generateWord())}")
+                
                 userAnswer = input("\nType in the word correctly: ").upper()
-                if userAnswer == correctWord:
+                if userAnswer == wordGuess.correctWord:
                     print("You are correct! Well done")
                     wordGuess.score += 1
                 elif wordGuess.guesses <= 0:
                     print("\nGame Over")
                     break
                 else:
-                    try:
-                        wordGuess.tryTimes(userAnswer,correctWord)
-                    except:
-                        return "Something's wrong"
-
+                    wordGuess.tryTimes(userAnswer,wordGuess.correctWord)
+                    
                 wordGuess.steps += 1
                 print(f"\nCurrent score = {wordGuess.score}.")
 
             ## Message after the loop
-            if wordGuess.guesses <= 0:
+            if wordGuess.score == wordsToRecieve:
+                print(f"Congratulations! You got all {wordsToRecieve} answers correct!")
+            elif wordGuess.guesses <= 0:
                 print(f"\nThis is so sad.. You ran out of guesses. GAME OVER \
                     \n Better luck next time in getting all {wordsToRecieve} answers correct")
-            elif wordGuess.score == wordsToRecieve:
-                print(f"Congratulations! You got all {wordsToRecieve} answers correct!")
             else:
                 print(f":) Better luck next time in getting all {wordsToRecieve} answers correct")
 
