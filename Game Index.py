@@ -36,16 +36,8 @@ class wordGuess:
 
     def generateWord():
         ## a variable that'll represent a word in Array
-        wordBucketIndex = random.randint(0,len(wordGuess.wordBucket))
-
-        try:
-            wordFromIndex = wordGuess.wordBucket[wordBucketIndex].upper()
-        except IndexError as listIndexError:
-            wordFromIndex = wordGuess.wordBucket[wordBucketIndex-1].upper()
-            # outputErr = input("print Error Y/N: ").upper()
-            # if outputErr == "Y":
-                # print(f"\n{listIndexError}\n")
-
+        wordBucketIndex = random.randint(0,len(wordGuess.wordBucket) - 1)
+        wordFromIndex = wordGuess.wordBucket[wordBucketIndex].upper()
         wordGuess.correctWord = wordFromIndex 
         return wordFromIndex
 ## End of generateWord() function
